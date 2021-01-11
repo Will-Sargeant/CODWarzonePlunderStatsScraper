@@ -55,8 +55,13 @@ def scrape (player_name, plarform, driver):
         value = stat.find("span", {"class": "value"})
         
         try:
-            attributes.append(parse_text(name))
-            values.append(parse_text(value))
+            if (parse_text(name)) in attributes:
+                name = str((parse_text(name)))+"_"
+                attributes.append(name)
+                values.append(parse_text(value))
+            else:
+                attributes.append(parse_text(name))
+                values.append(parse_text(value))
         except AttributeError:
             pass
 
